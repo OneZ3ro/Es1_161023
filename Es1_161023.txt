@@ -1,0 +1,33 @@
+1. Estrare il nome e cognome dei clienti nati nel 1982
+
+SELECT nome, cognome FROM clienti
+WHERE data_nascita >= '1982-01-01' AND data_nascita < '1983-01-01'
+ 
+------------------------------------------------------------------------------
+2. Estrare il numero delle fatture con iva al 20%
+
+SELECT iva FROM fatture
+WHERE iva = 20
+
+------------------------------------------------------------------------------
+3. 
+SELECT COUNT (*), SUM(importo) FROM fatture group by (data_fattura)
+
+------------------------------------------------------------------------------
+4.
+SELECT * FROM prodotti
+WHERE data_attivazione >= '2017-01-01' AND data_attivazione < '2018-01-01' AND (in_produzione = 'true' OR in_commercio)
+
+------------------------------------------------------------------------------
+5.
+SELECT COUNT (*) FROM fatture WHERE iva = 20 group by (data_fattura)
+
+------------------------------------------------------------------------------
+6.
+SELECT data_fattura FROM fatture 
+WHERE (SELECT COUNT (*) FROM fatture WHERE tipologia = 'A')>2
+
+------------------------------------------------------------------------------
+7.
+SELECT numero_fattura, importo, iva, data_fattura FROM fatture
+JOIN fornitori ON fatture.denominazione = fornitori.denominazione
